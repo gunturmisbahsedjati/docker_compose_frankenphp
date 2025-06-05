@@ -8,10 +8,10 @@ ganti path untuk ganti routing folder public laravel => /app/{folder_name_larave
 copy folder website ke folder www
 
 ### setting .env pada laravel
-DB_CONNECTION=mysql
-DB_HOST=db
-DB_DATABASE=laravel
-DB_USERNAME=root
+DB_CONNECTION=mysql<br>
+DB_HOST=db<br>
+DB_DATABASE=laravel<br>
+DB_USERNAME=root<br>
 DB_PASSWORD=password
 
 ### ke container frankenphp
