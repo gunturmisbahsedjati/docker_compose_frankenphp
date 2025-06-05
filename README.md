@@ -15,10 +15,10 @@ DB_USERNAME=root<br>
 DB_PASSWORD=password
 
 ### ke container frankenphp
-docker exec -it {container_name_frankern} bash
-composer install
-php artisan key:generate --ansi
-php artisan migrate
+docker exec -it {container_name_franken} bash<br>
+composer install<br>
+php artisan key:generate --ansi<br>
+php artisan migrate<br>
 
 ### akses url
 http://localhost:3000
