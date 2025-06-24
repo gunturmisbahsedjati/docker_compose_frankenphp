@@ -1,0 +1,52 @@
+// {
+//     "name": "FrankenPHP Laravel Dev Container",
+//     "dockerComposeFile": ["../docker-compose.yml"],
+//     "service": "frankenphp_server",
+//     "workspaceFolder": "/app",
+//     "extensions": [
+//         "ms-php.php-pack",
+//         "ms-vscode.vscode-node-azure-pack",
+//         "EditorConfig.EditorConfig"
+//     ],
+//     "settings": {
+//         "php.validate.executablePath": "/usr/local/bin/php",
+//         "terminal.integrated.defaultProfile.linux": "bash"
+//     },
+//     "postCreateCommand": "composer install && npm install",
+//     "mounts": [
+//         "source=${localWorkspaceFolder},target=/app,type=bind"
+//     ]
+// }
+
+
+{
+    "name": "FrankenPHP Laravel Dev Container",
+    "dockerComposeFile": ["../docker-compose.yml"],
+    "service": "frankenphp_server",
+    "workspaceFolder": "/app",
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "editor.formatOnSave": true,
+                "terminal.integrated.shell.linux": "/bin/bash",
+                "[php]": {
+                    "php.validate.executablePath": "/usr/local/bin/php"
+                }
+            },
+            // https://code.visualstudio.com/docs/remote/devcontainerjson-reference#_vs-code-specific-properties
+            // Add the IDs of extensions you want installed when the container is created.
+            "extensions": [
+                "bmewburn.vscode-intelephense-client",
+                "EditorConfig.EditorConfig",
+                "laravel.vscode-laravel",
+                "eamodio.gitlens" 
+            ]
+        }
+    },
+    "settings": {
+        "php.validate.executablePath": "/usr/local/bin/php",
+        "terminal.integrated.defaultProfile.linux": "bash"
+    },
+    "postCreateCommand": "composer install && npm install",
+    "remoteUser": "root"
+}

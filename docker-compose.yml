@@ -5,57 +5,57 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - 3000:80
+      - 5000:80
     volumes:
-      - ./www:/app
+      - ./cosmonesa10:/app
     networks:
       - frankenphp_network
     restart: always
     command: frankenphp php-server -r ${APP_PATH}
-    depends_on:
-      - db
-  db:
-    image: mysql:8.4.0
-    container_name: frankenphp_mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: password
-      # MYSQL_DATABASE: company
-    ports:
-      - 3001:3306
-    volumes:
-      - volume-db:/var/lib/mysql
-    restart: always
-    command: mysqld --sql_mode="STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION"
-    networks:
-      - frankenphp_network
+    # depends_on:
+    #   - db
+#   db:
+#     image: mysql:8.4.0
+#     container_name: frankenphp_mysql
+#     environment:
+#       MYSQL_ROOT_PASSWORD: password
+#       # MYSQL_DATABASE: company
+#     ports:
+#       - 3001:3306
+#     volumes:
+#       - volume-db:/var/lib/mysql
+#     restart: always
+#     command: mysqld --sql_mode="STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION"
+#     networks:
+#       - frankenphp_network
 
-  redis:
-    image: redis:7.2.1
-    container_name: frankenphp_redis
-    restart: always
-    ports:
-      - 3004:6379
-    networks:
-      - frankenphp_network
+#   redis:
+#     image: redis:7.2.1
+#     container_name: frankenphp_redis
+#     restart: always
+#     ports:
+#       - 3004:6379
+#     networks:
+#       - frankenphp_network
 
-  phpmyadmin:
-    image: phpmyadmin:5.2.1
-    container_name: frankenphp_phpmyadmin
-    restart: always
-    ports:
-      - 3003:80
-    environment:
-      - PMA_ARBITRARY:1
-      - PMA_HOST:mysql
-      - UPLOAD_LIMIT=750M
-      - MEMORY_LIMIT=750M
-      - MAX_EXECUTION_TIME=300
-      - MYSQL_USERNAME:root
-      - MYSQL_ROOT_PASSWORD:password
-    depends_on:
-      - db
-    networks:
-      - frankenphp_network
+#   phpmyadmin:
+#     image: phpmyadmin:5.2.1
+#     container_name: frankenphp_phpmyadmin
+#     restart: always
+#     ports:
+#       - 3003:80
+#     environment:
+#       - PMA_ARBITRARY:1
+#       - PMA_HOST:mysql
+#       - UPLOAD_LIMIT=750M
+#       - MEMORY_LIMIT=750M
+#       - MAX_EXECUTION_TIME=300
+#       - MYSQL_USERNAME:root
+#       - MYSQL_ROOT_PASSWORD:password
+#     depends_on:
+#       - db
+#     networks:
+#       - frankenphp_network
 
 networks:
   frankenphp_network:
