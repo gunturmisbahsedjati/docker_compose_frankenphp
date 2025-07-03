@@ -1,28 +1,9 @@
-// {
-//     "name": "FrankenPHP Laravel Dev Container",
-//     "dockerComposeFile": ["../docker-compose.yml"],
-//     "service": "frankenphp_server",
-//     "workspaceFolder": "/app",
-//     "extensions": [
-//         "ms-php.php-pack",
-//         "ms-vscode.vscode-node-azure-pack",
-//         "EditorConfig.EditorConfig"
-//     ],
-//     "settings": {
-//         "php.validate.executablePath": "/usr/local/bin/php",
-//         "terminal.integrated.defaultProfile.linux": "bash"
-//     },
-//     "postCreateCommand": "composer install && npm install",
-//     "mounts": [
-//         "source=${localWorkspaceFolder},target=/app,type=bind"
-//     ]
-// }
 
 
 {
-    "name": "FrankenPHP Laravel Dev Container",
+    "name": "PHP7 Laravel8 Dev Container",
     "dockerComposeFile": ["../docker-compose.yml"],
-    "service": "frankenphp_server",
+    "service": "php7_server",
     "workspaceFolder": "/app",
     "customizations": {
         "vscode": {
@@ -43,6 +24,7 @@
             ]
         }
     },
+    
     "settings": {
         "php.validate.executablePath": "/usr/local/bin/php",
         "terminal.integrated.defaultProfile.linux": "bash"
