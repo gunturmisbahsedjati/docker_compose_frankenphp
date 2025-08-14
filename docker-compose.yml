@@ -1,11 +1,14 @@
 services:
   php7_server:
+    dns:
+      - 8.8.8.8
+      - 1.1.1.1
     container_name: php7_laravel
     build:
       context: .
       dockerfile: Dockerfile
     ports:
-      - 3000:80
+      - 5000:80
     volumes:
       - ./bansmjatim:/app
     networks:
@@ -19,13 +22,14 @@ services:
     container_name: php7_mysql
     environment:
       MYSQL_DATABASE: banc9232_laravel
-      MYSQL_USER: root
-      MYSQL_PASSWORD: password
-      MYSQL_ROOT_PASSWORD: password
+      # MYSQL_USER: root
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      # MYSQL_PASSWORD: password
+      # MYSQL_ROOT_PASSWORD: password
 
       # MYSQL_DATABASE: company
     ports:
-      - 3001:3306
+      - 5001:3306
     volumes:
       - volume-db:/var/lib/mysql
     restart: always
