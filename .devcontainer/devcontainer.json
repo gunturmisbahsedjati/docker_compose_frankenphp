@@ -10,10 +10,9 @@
         "terminal.integrated.shell.linux": "/bin/bash",
         "[php]": {
           "php.validate.executablePath": "/usr/local/bin/php"
-        }
+        },
+        "terminal.integrated.defaultProfile.linux": "bash"
       },
-      // https://code.visualstudio.com/docs/remote/devcontainerjson-reference#_vs-code-specific-properties
-      // Add the IDs of extensions you want installed when the container is created.
       "extensions": [
         "bmewburn.vscode-intelephense-client",
         "EditorConfig.EditorConfig",
@@ -23,17 +22,12 @@
     }
   },
   "mounts": [
-    "source=${localEnv:HOME}/.gitconfig,target=/home/vscode/.gitconfig,type=bind,consistency=cached",
-    "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,consistency=cached"
+    "source=${localEnv:HOME}/.gitconfig,target=/root/.gitconfig,type=bind,consistency=cached",
+    "source=${localEnv:HOME}/.ssh,target=/root/.ssh,type=bind,consistency=cached"
   ],
   "features": {
     "ghcr.io/devcontainers/features/git:1": {}
   },
-
-  "settings": {
-    "php.validate.executablePath": "/usr/local/bin/php",
-    "terminal.integrated.defaultProfile.linux": "bash"
-  },
-  "postCreateCommand": "composer install && npm install",
+  "postCreateCommand": "composer install",
   "remoteUser": "root"
 }

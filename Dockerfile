@@ -3,17 +3,18 @@ FROM php:7.4-fpm
 USER root
 
 # Install basic utilities
-RUN apt update && apt install -y \
+RUN apt-get update && apt-get install -y \
     htop \
     nano \
     zip \
     curl \
     git \
-    iputils-ping
+    iputils-ping \
+    && rm -rf /var/lib/apt/lists/*
 
 # Add PHP extension installer
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
-RUN chmod uga+x /usr/local/bin/install-php-extensions && sync
+RUN chmod +x /usr/local/bin/install-php-extensions && sync
 
 # Install PHP extensions (including imagick)
 RUN install-php-extensions \
@@ -21,17 +22,15 @@ RUN install-php-extensions \
     gd \
     intl \
     zip \
-    opcache
-
-# Install FrankenPHP
-RUN curl https://frankenphp.dev/install.sh | sh
-RUN mv frankenphp /usr/local/bin/
+    opcache \
+    imagick
 
 # Add custom PHP config
 COPY php_conf.ini /usr/local/etc/php/conf.d/
 
 # Install Composer
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+RUN curl -sS https://getcomposer.org/installer | php -- \
+    --install-dir=/usr/local/bin --filename=composer
 
-# Optional: Set Laravel public path
-# CMD [ "frankenphp", "php-server", "-r", "/app/crud/public/" ]
+# Default command: run PHP-FPM
+CMD ["php-fpm"]
